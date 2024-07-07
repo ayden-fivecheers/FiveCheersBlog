@@ -1,0 +1,6 @@
+/fcweb/node_modules
+/fcweb/.idea
+
+/fcserver/.mvn
+/fcserver/.idea
+/fcserver/target
