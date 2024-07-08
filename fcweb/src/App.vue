@@ -26,4 +26,16 @@
     top: 0;
     bottom: 0;
   }
+  @font-face {
+    font-family: 'HelloFont';
+    src: url('@/assets/font/HelloFont.ttf')
+  }
+  @font-face {
+    font-family: 'HelloChina';
+    src: url('@/assets/font/HelloChina.ttf')
+  }
+  *{
+    font-family: HelloChina;
+    font-family: HelloFont;
+  }
 </style>

@@ -68,7 +68,6 @@ const jumpToYYM = ()=>{
     color: white;
   }
   .select_head h1{
-    font-family: 黑体;
     letter-spacing: 6px;
     font-size: 28px;
     font-weight: bold;

@@ -7,6 +7,7 @@ import BackgroundCom from "@/coms/select/BackgroundCom.vue";
 
 <template>
   <div>
+
     <BackgroundCom/>
     <SelectCardCom class="select_card_pos"/>
   </div>
