@@ -23,13 +23,30 @@ import PasswordPage from "@/pages/manager/PasswordPage.vue";
 import ManagerSelectPage from "@/pages/manager/ManagerSelectPage.vue";
 import PhoneMyVideosDeep from "@/pages/myvideos/PhoneMyVideosDeep.vue";
 import DesktopMyTravel from "@/pages/mytravel/DesktopMyTravel.vue";
+import HelloPage from "@/pages/hello/HelloPage.vue";
+import DeskBolg from "@/pages/blog/DeskBolg.vue";
+import PhoneBlog from "@/pages/blog/PhoneBlog.vue";
 
 const routes = [
-    //选择页面
+    //初始化页面
     {
-        path: '/',
-        redirect:'/select'
+        path: '/desktop/',
+        component: HelloPage
     },
+    {
+        path: '/phone/',
+        component: HelloPage
+    },
+    //Blog
+    {
+        path: '/desktop/blog',
+        component: DeskBolg
+    },
+    {
+        path: '/phone/blog',
+           component: PhoneBlog
+    },
+    //选择页面
     {
         path:'/phone/select',
         component: PhoneSelect

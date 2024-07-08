@@ -4,7 +4,7 @@ import {postLog} from "@/js/apihelper";
 export const jumphelper = {
     jumpToSelect:()=>{
         router.replace('/select')
-        //postLog('页面跳转-主页')
+        postLog('页面跳转-主页')
     },
     jumpToDead:()=>{
         router.replace('/dead')
@@ -52,5 +52,9 @@ export const jumphelper = {
     jumpToManagerSelect:()=>{
         router.replace('/phone/managerselect')
         postLog('页面跳转-管理员选择页面')
+    },
+    pushMyBlog:()=>{
+        router.push('/myblog')
+        postLog('页面跳转-我的博客')
     }
 }
