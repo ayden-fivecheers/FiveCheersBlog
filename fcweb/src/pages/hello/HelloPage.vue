@@ -33,6 +33,9 @@
 </script>
 
 <style scoped>
+  *{
+    font-family: HelloFont;
+  }
   .background{
     position: fixed;
     left: 0;

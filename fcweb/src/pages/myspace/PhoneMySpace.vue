@@ -122,10 +122,10 @@ const showSpaceImg = (imgUrl)=>{
 <template>
   <div class="space_background">
     <HomeOutlined @click="jumphelper.jumpToSelect()" class="home_icon"/>
-    <h4>- 我的空间 -</h4>
+    <h4 style="font-family: 夏风">- 我的空间 -</h4>
     <div class="space_line_container">
       <div v-for="(space, spaceIndex) in spaces" :key="spaceIndex" class="space_line">
-        <h5>{{ space.spaceTime }}</h5>
+        <h5 style="font-family: 清泉">{{ space.spaceTime }}</h5>
         <p>{{ space.spaceContent }}</p>
         <div v-if="space.spaceImgs[0] !== ''" class="imgs_container">
           <div v-for="(item, imgIndex) in space.spaceImgs" :key="imgIndex">
@@ -144,7 +144,7 @@ const showSpaceImg = (imgUrl)=>{
       </div>
       <!--查看更多-->
       <div class="btn_container">
-        <a-button type="text" @click="getMore">- 查看更多 -</a-button>
+        <a-button style="font-family: 夏风" type="text" @click="getMore">- 查看更多 -</a-button>
       </div>
     </div>
     <ImgCom/>

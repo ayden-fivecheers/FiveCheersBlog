@@ -156,6 +156,9 @@ const copyContact = (type)=>{
 
 <style scoped>
   @import "@/css/animation.css";
+  *{
+    font-family: HelloFont;
+  }
   /*顶部*/
   .contact-container{
     position: fixed;

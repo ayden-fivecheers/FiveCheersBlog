@@ -26,8 +26,4 @@
     top: 0;
     bottom: 0;
   }
-  *{
-    font-family: HelloChina;
-    font-family: HelloFont;
-  }
 </style>

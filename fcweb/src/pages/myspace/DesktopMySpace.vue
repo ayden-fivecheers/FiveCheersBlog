@@ -157,7 +157,7 @@ const getNowTime = ()=>{
       </div>
       <!--查看更多-->
       <div class="btn_container">
-        <a-button type="text" @click="getMore">- 查看更多 -</a-button>
+        <a-button style="font-family: 夏风" type="text" @click="getMore">- 查看更多 -</a-button>
       </div>
     </div>
     <ImgCom/>
@@ -208,10 +208,10 @@ const getNowTime = ()=>{
     width: 128px;
     text-align: right;
     line-height: 28px;
-    font-weight: bold;
     padding-right: 12px;
     letter-spacing: 2px;
-    font-family: "Maiandra GD";
+    font-family: 清泉;
+    margin-top: 4px;
     animation: right-fade-in 1s 1;
   }
   .content_container{

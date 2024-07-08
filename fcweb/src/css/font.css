@@ -1,8 +1,16 @@
 @font-face {
     font-family: 'HelloFont';
-    src: url('@/assets/font/HelloFont.ttf')
+    src: url('../assets/font/HelloFont.ttf')
 }
 @font-face {
-    font-family: 'HelloChina';
-    src: url('@/assets/font/HelloChina.ttf')
+    font-family: '无事小神仙';
+    src: url('../assets/font/AaXiaoLiWo.ttf')
+}
+@font-face {
+    font-family: '夏风';
+    src: url('../assets/font/AaTianMeiXinDongNaiLaoTi-2.ttf')
+}
+@font-face {
+    font-family: '清泉';
+    src: url('../assets/font/WoMenDeGuShiCongWeiKaiShi-2.ttf')
 }

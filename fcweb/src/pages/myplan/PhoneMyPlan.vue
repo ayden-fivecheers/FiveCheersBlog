@@ -239,6 +239,7 @@ const downloadFile = ()=>{
 }
 :deep(.ant-select-selector){
   border: 1px solid #d7d7d7 !important;
+  font-family: 清泉;
 }
 /*卡片*/
 .phone-plan-card-out{
@@ -304,6 +305,7 @@ const downloadFile = ()=>{
   align-items: center;
   justify-content: space-around;
   color: #666;
+  font-family: 清泉;
 }
 .phone_plan_card_txt h2{
   margin: 0;
@@ -335,6 +337,7 @@ const downloadFile = ()=>{
   background-color: #94abe888;
   padding: 16px;
   animation: bottom-fade-in .8s 1;
+  font-family: 清泉;
 }
 /*死没死*/
 .check-container{
