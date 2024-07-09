@@ -75,6 +75,7 @@ const jumpToYYM = ()=>{
     margin-top: 4px;
     animation: fontSpaceAni1 1.2s 1;
     white-space: nowrap;
+    font-family: 无事小神仙;
   }
   @keyframes fontSpaceAni1 {
     0%{
@@ -90,6 +91,7 @@ const jumpToYYM = ()=>{
     animation: fontSpaceAni2 1.4s 1;
     white-space: nowrap;
     letter-spacing: 4px;
+    font-family: HelloFont;
   }
   @keyframes fontSpaceAni2 {
     0%{
@@ -133,13 +135,14 @@ const jumpToYYM = ()=>{
     column-gap: 7%;
     row-gap: 15%;
     padding: 32px 2% 12px 2%;
+    font-family: 夏风;
   }
   .default_select_button{
     border: none;
     border-radius: 4px;
     box-shadow: 2px 3px 6px #00000033;
     letter-spacing: 1px;
-    font-size: 14px;
+    font-size: 15px;
     animation: btn-ani 2s 1;
     animation-delay: -0.4s;
     cursor: pointer;

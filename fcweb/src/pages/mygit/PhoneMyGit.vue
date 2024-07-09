@@ -113,7 +113,7 @@ const scrollDiv = ref()
     <h4>- 我的开源 -</h4>
     <div ref="scrollDiv" class="scroll-container">
       <div v-for="(item, index) in videoList" :key="index" class="video-line">
-        <h5>{{ item.time }}</h5>
+        <h5 style="font-family: 清泉;">{{ item.time }}</h5>
         <p>{{ item.gitContent }}</p>
         <div class="a-container">
           <a v-if="item.gitUrl" :href="item.gitUrl">项目地址</a>
@@ -125,7 +125,7 @@ const scrollDiv = ref()
             v-bind="getOptions(item.gitVideo)"
         />
       </div>
-      <a-button type="text" @click="pushVideos">- 更多 -</a-button>
+      <a-button style="font-family: 夏风;" type="text" @click="pushVideos">- 更多 -</a-button>
     </div>
     <div @click="newVideoShow" v-if="!cardShowing && isManager" class="add-container">
       <PlusOutlined />
@@ -154,6 +154,7 @@ const scrollDiv = ref()
   justify-content: center;
   animation: top-fade-in .8s 1;
   margin-bottom: 0;
+  font-family: 夏风;
 }
 .scroll-container{
   flex: 1;
@@ -200,6 +201,7 @@ const scrollDiv = ref()
 }
 .a-container{
   margin: -8px 0 8px;
+  font-family: 夏风;
 }
 .a-container a{
   margin-right: 12px;
