@@ -2,7 +2,7 @@
 import SelectCardCom from "@/coms/select/SelectCardCom.vue";
 import {jumphelper} from "@/js/jumphelper";
 import BackgroundCom from "@/coms/select/BackgroundCom.vue";
-
+import {LeftOutlined} from "@ant-design/icons-vue";
 
 
 </script>
@@ -12,6 +12,7 @@ import BackgroundCom from "@/coms/select/BackgroundCom.vue";
     <BackgroundCom/>
     <SelectCardCom class="select_card_pos"/>
     <a-button @click="jumphelper.jumpToManagerPassword()" class="manager_btn" type="text" size="small">管理入口</a-button>
+    <LeftOutlined style="color: #ffffff; margin-left: -8px" @click="jumphelper.jumpToHello()" class="home_icon"/>
   </div>
 </template>
 

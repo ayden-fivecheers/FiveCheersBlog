@@ -28,7 +28,7 @@
   };
   const goToCodingBlog = () => {
     open.value = false;
-    jumphelper.pushMyBlog()
+    jumphelper.jumpToMyBlog()
   };
 </script>
 

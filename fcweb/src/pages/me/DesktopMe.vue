@@ -9,7 +9,7 @@ import BuildingCom from "@/coms/all/BuildingCom.vue";
 
 <template>
   <div>
-    <HomeOutlined @click="jumphelper.jumpToSelect()" class="home_icon"/>
+    <HomeOutlined @click="jumphelper.jumpToHello()" class="home_icon"/>
     <BuildingCom/>
   </div>
 </template>

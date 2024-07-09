@@ -53,8 +53,12 @@ export const jumphelper = {
         router.replace('/phone/managerselect')
         postLog('页面跳转-管理员选择页面')
     },
-    pushMyBlog:()=>{
-        router.push('/myblog')
+    jumpToMyBlog:()=>{
+        router.push('/blog')
         postLog('页面跳转-我的博客')
+    },
+    jumpToHello:()=>{
+        router.replace('/')
+        postLog('页面跳转-首页')
     }
 }
