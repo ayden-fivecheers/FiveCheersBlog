@@ -55,7 +55,7 @@ const insertNewVideoSure = ()=>{
     <div v-if="newVideoShow" class="new-video-container">
       <div class="card-container">
         <a-upload
-            action="https://www.yym-free.com/wz/file/defaultUpLoadFile"
+            action="http://www.fivecheers.com:1001/file/defaultUpLoadFile"
             @change="handleUploadChange">
           <a-button style="margin-top: 8px">
             <upload-outlined></upload-outlined>

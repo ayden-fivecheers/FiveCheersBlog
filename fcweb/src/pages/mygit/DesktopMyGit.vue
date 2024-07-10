@@ -197,11 +197,12 @@ const scrollDiv = ref()
   border-radius: 8px;
   margin-bottom: 12px;
   position: relative;
-  margin-left: 12px;
   white-space: pre-line;
   display: flex;
   justify-content: space-around;
   backdrop-filter: blur(4px);
+  width: calc(100% - 16px);
+
 }
 .left-container{
   flex: 1;

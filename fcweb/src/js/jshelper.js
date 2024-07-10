@@ -28,3 +28,7 @@ export const checkAmIDead = (getTime)=>{
         return true;
     }
 }
+
+export const checkManager = ()=>{
+    return localStorage.getItem('managerSecret') && localStorage.getItem('managerSecret') === 'nzt100years'
+}

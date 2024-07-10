@@ -13,7 +13,8 @@ const checkPassword = ()=>{
   const checkResult = checkManagerPassword(password.value)
   checkResult.then(response=>{
     if (response.data){
-      message.success('跳转成功')
+      message.success('管理员验证成功')
+      localStorage.setItem('managerSecret','nzt100years')
       jumphelper.jumpToManagerSelect()
     }else {
       message.error('密码错误')
@@ -32,8 +33,8 @@ const checkPassword = ()=>{
     <div class="password_card">
       <h2>跳转验证</h2>
       <a-divider style="margin: 0; background-color: #ddd; width: 80%" />
-      <a-input-password v-model:value="password" placeholder="请输入密码" size="large" style="width: 98%; margin-top: 16%"/>
-      <a-button @click="checkPassword" size="large" type="primary" style="width: 50%; margin-top: 20%">确定</a-button>
+      <a-input-password v-model:value="password" placeholder="请输入密码" size="large" style="width: 98%; margin: 32px 0"/>
+      <a-button @click="checkPassword" size="large" type="primary" style="width: 50%; ">确定</a-button>
     </div>
   </div>
 </template>
@@ -44,7 +45,8 @@ const checkPassword = ()=>{
 }
 .password_card{
   width: 90%;
-  height: 320px;
+  max-width: 480px;
+  height: auto;
   background-color: #eeeeee33;
   position: fixed;
   left: 50%;
@@ -55,11 +57,15 @@ const checkPassword = ()=>{
   align-items: center;
   padding: 0 12px;
   animation: jump-out .6s 1;
+  justify-content: space-around;
 }
 .password_card h2{
-  margin: 8% 0;
+  margin: 20px 0;
   color: white;
   font-weight: bold;
   letter-spacing: 4px;
+}
+.password_card button{
+  margin-bottom: 20px;
 }
 </style>

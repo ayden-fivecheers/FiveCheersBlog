@@ -38,13 +38,6 @@ export const jumphelper = {
         router.replace('/mytravel')
         postLog('页面跳转-旅行日志')
     },
-    jumpToMyVideos:()=>{
-        router.replace('/myvideos')
-        postLog('页面跳转-视频-输入密码')
-    },
-    jumpToMyVideosDeep:()=>{
-        router.replace('/phone/myvideos/deep')
-    },
     jumpToManagerPassword:()=>{
         router.replace('/phone/managerpassword')
         postLog('页面跳转-管理员密码')
@@ -53,8 +46,12 @@ export const jumphelper = {
         router.replace('/phone/managerselect')
         postLog('页面跳转-管理员选择页面')
     },
-    pushMyBlog:()=>{
-        router.push('/myblog')
+    jumpToMyBlog:()=>{
+        router.push('/blog')
         postLog('页面跳转-我的博客')
+    },
+    jumpToHello:()=>{
+        router.replace('/')
+        postLog('页面跳转-首页')
     }
 }

@@ -4,6 +4,7 @@
     letter-spacing: 1px;
     user-select: none;
     word-break: break-all;
+    font-family: 夏风;
 }
 p{
     line-height: 1.3;
@@ -25,13 +26,6 @@ p{
     color: #5471c0;
     transition: .4s;
     font-size: 26px;
-}
-.card_cancel_btn{
-    position: fixed;
-    right: 12px;
-    top: calc(25vh - 145px);
-    font-size: 26px;
-    color: white;
 }
 .fade-enter-active, .fade-leave-active {
     transition: opacity 0.5s;

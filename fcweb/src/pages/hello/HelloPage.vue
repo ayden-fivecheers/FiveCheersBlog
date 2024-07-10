@@ -6,7 +6,7 @@
     <!--hello world, I'm Ayden-->
     <p>Hello World, I'm Ayden</p>
     <!--modal-->
-    <a-modal v-model:open="open" title="Visit">
+    <a-modal style="font-family: HelloFont;" v-model:open="open" title="Visit">
       <template #footer>
         <a-button size="small" key="space" @click="goToSpace">Ayden's space</a-button>
         <a-button size="small" key="submit" @click="goToCodingBlog">Ayden's coding blog</a-button>
@@ -28,7 +28,7 @@
   };
   const goToCodingBlog = () => {
     open.value = false;
-    jumphelper.pushMyBlog()
+    jumphelper.jumpToMyBlog()
   };
 </script>
 

@@ -1,5 +1,5 @@
 <script setup>
-import {CloseOutlined, LeftOutlined, RightOutlined, UploadOutlined} from '@ant-design/icons-vue'
+import {LeftOutlined, RightOutlined, UploadOutlined} from '@ant-design/icons-vue'
 import {bus} from "vue3-eventbus";
 import {onMounted, ref} from "vue";
 import {message} from "ant-design-vue";
@@ -75,7 +75,7 @@ const nextYear = ()=>{
 <template>
   <div class="select_com_background">
     <h2>- 编辑挑战 -</h2>
-    <CloseOutlined @click="closeSelectCard()" class="card_cancel_btn" />
+    <div @click="closeSelectCard()" style="position: fixed; left: 0; right: 0; top: 0; bottom: 0"></div>
     <div class="select_com_card">
       <div class="select_card_title">
         <LeftOutlined @click="lastYear"/>
@@ -109,7 +109,7 @@ const nextYear = ()=>{
             <a-input style="width: 180px" v-model:value="item.planImg"/>
           </div>
           <a-upload
-              action="https://www.yym-free.com/wz/file/defaultUpLoadFile"
+              action="http://www.fivecheers.com:1001/file/defaultUpLoadFile"
               @change="handleUploadChange">
             <a-button style="margin-top: 8px">
               <upload-outlined></upload-outlined>
@@ -137,10 +137,9 @@ const nextYear = ()=>{
 }
 .select_com_card{
   position: absolute;
-  left: 16px;
-  right: 16px;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   max-height: 580px;
   height: calc(100% - 88px);
   background: #fff;
@@ -149,7 +148,9 @@ const nextYear = ()=>{
   overflow-y: scroll;
   overflow-x: hidden;
   display: flex;
+  width: calc(100% - 12px);
   flex-direction: column;
+  max-width: 600px;
 }
 .select_com_background h2{
   position: absolute;

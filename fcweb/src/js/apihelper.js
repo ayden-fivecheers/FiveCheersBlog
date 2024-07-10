@@ -2,7 +2,7 @@ import axios from "axios";
 
 //const gdMapKey = '1caf32ee46ec234c69a6a49e47db53e0'
 //const baseApi = 'http://localhost:1227'
-const baseApi = 'https://www.yym-free.com/wz'
+const baseApi = 'http://www.fivecheers.com:1001'
 
 /**
  * 基础接口

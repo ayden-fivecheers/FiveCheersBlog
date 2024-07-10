@@ -11,7 +11,6 @@ import PlanInsertCom from "@/coms/manager/PlanInsertCom.vue";
 import PlanChangeCom from "@/coms/manager/PlanChangeCom.vue";
 import SpaceInsertCom from "@/coms/manager/SpaceInsertCom.vue";
 import SpaceUpdateCom from "@/coms/manager/SpaceUpdateCom.vue";
-import {message} from "ant-design-vue";
 const activeKey = ref(null);
 onMounted(()=>{
   bus.on('closeSelectCard',()=>{
@@ -48,36 +47,23 @@ const comsOn = ref({
   spaceUpdate: false
 })
 
-//管理员
-const managerSecret = ref('')
-const checkManagerSecret = ()=>{
-  if (managerSecret.value === 'Deadpool1234-'){
-    localStorage.setItem('managerSecret','nzt100years')
-    message.success('管理员身份验证成功')
-  }else{
-    message.error('密码错误')
-  }
-}
-
 </script>
 
 <template>
   <div class="manager_select_background">
-    <img class="manager_select_background_img" src="@/assets/logo.png">
     <HomeOutlined @click="jumphelper.jumpToSelect()" class="home_icon"/>
     <h3 class="manager_select_head">选择功能</h3>
     <div class="manager_select_container">
       <a-collapse v-model:activeKey="activeKey" accordion>
-        <a-collapse-panel key="1" header="我">
+        <a-collapse-panel key="1" header="关于我">
           <div class="manager_select_panel">
             <a-button @click="selectCom('meChange')">修改资料</a-button>
             <a-button @click="selectCom('default')">default</a-button>
           </div>
         </a-collapse-panel>
-        <a-collapse-panel key="2" header="年度挑战">
+        <a-collapse-panel key="2" header="我的开源">
           <div class="manager_select_panel">
-            <a-button @click="selectCom('planInsert')">增加年度挑战</a-button>
-            <a-button @click="selectCom('planChange')">编辑年度挑战</a-button>
+
           </div>
         </a-collapse-panel>
         <a-collapse-panel key="3" header="我的空间">
@@ -86,22 +72,24 @@ const checkManagerSecret = ()=>{
             <a-button @click="selectCom('spaceUpdate')">编辑说说</a-button>
           </div>
         </a-collapse-panel>
-        <a-collapse-panel key="4" header="藏宝图">
+        <a-collapse-panel key="4" header="人生逆旅">
+          <div class="manager_select_panel">
+            <a-button @click="selectCom('planInsert')">增加年度挑战</a-button>
+            <a-button @click="selectCom('planChange')">编辑年度挑战</a-button>
+          </div>
+        </a-collapse-panel>
+        <a-collapse-panel key="5" header="吃吃喝喝">
           <div class="manager_select_panel">
 
           </div>
         </a-collapse-panel>
-        <a-collapse-panel key="5" header="旅行日志">
+        <a-collapse-panel key="6" header="旅行足迹">
           <div class="manager_select_panel">
 
           </div>
         </a-collapse-panel>
-        <a-collapse-panel key="6" header="我的开源">
-          <div class="manager_select_panel">
 
-          </div>
-        </a-collapse-panel>
-        <a-collapse-panel key="7" header="书架">
+        <a-collapse-panel key="7" header="头脑风暴">
           <div class="manager_select_panel">
 
           </div>
@@ -111,15 +99,9 @@ const checkManagerSecret = ()=>{
 
           </div>
         </a-collapse-panel>
-        <a-collapse-panel key="9" header="视频收藏">
+        <a-collapse-panel key="9" header="给我留言">
           <div class="manager_select_panel">
 
-          </div>
-        </a-collapse-panel>
-        <a-collapse-panel key="10" header="管理员">
-          <div class="manager_select_panel">
-            <a-input v-model:value="managerSecret" style="width: calc(100% - 160px)"/>
-            <a-button @click="checkManagerSecret">确定</a-button>
           </div>
         </a-collapse-panel>
       </a-collapse>
@@ -148,7 +130,7 @@ const checkManagerSecret = ()=>{
 
 <style scoped>
 .manager_select_background{
-  background: linear-gradient(to bottom, #fefefe, #edf1f5);
+  background: linear-gradient(to right bottom, #f7fafcaa, #eef5fcaa, #f7ecfaaa);
 }
 .manager_select_background_img{
   position: fixed;
@@ -173,12 +155,12 @@ const checkManagerSecret = ()=>{
 }
 .manager_select_container{
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  padding: 60px 12px 12px 12px;
-  animation: right-fade-in 1.2s 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 12px);
+  animation: right-fade-in .4s 1;
+  max-width: 600px;
 }
 .manager_select_panel{
   display: flex;
