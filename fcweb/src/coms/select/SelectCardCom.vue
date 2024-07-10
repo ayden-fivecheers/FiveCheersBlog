@@ -21,11 +21,11 @@ const jumpToYYM = ()=>{
         <button class="default_select_button" @click="jumphelper.jumpToMyGit()">我的开源</button>
         <button class="default_select_button" @click="jumphelper.jumpToMySpace()">我的空间</button>
         <button class="default_select_button" @click="jumphelper.jumpToMyPlan()">人生逆旅</button>
-        <button class="default_select_button" @click="jumphelper.jumpToDead()">吃吃喝喝</button>
-        <button class="default_select_button" @click="jumphelper.jumpToMyTravel()">旅行足迹</button>
-        <button class="default_select_button" @click="jumphelper.jumpToMyBooks()">头脑风暴</button>
-        <button class="default_select_button" @click="jumphelper.jumpToMyMusic()">音乐</button>
-        <button class="default_select_button" @click="jumphelper.jumpToMyVideos()">给我留言</button>
+        <button class="default_select_button building" @click="jumphelper.jumpToDead()">吃吃喝喝</button>
+        <button class="default_select_button building" @click="jumphelper.jumpToMyTravel()">旅行足迹</button>
+        <button class="default_select_button building" @click="jumphelper.jumpToMyBooks()">头脑风暴</button>
+        <button class="default_select_button building" @click="jumphelper.jumpToMyMusic()">音乐</button>
+        <button class="default_select_button building" @click="jumphelper.jumpToMyVideos()">给我留言</button>
         <button class="default_select_button custom_select_button2" @click="jumpToYYM">旧版于眉</button>
       </div>
     </div>
@@ -191,6 +191,19 @@ const jumpToYYM = ()=>{
     background: linear-gradient(to right bottom, #bbbbbb, #c9b5b5);
     color: #fff;
     animation-delay: -0.2s;
+  }
+  .building{
+    position: relative;
+  }
+  .building::after{
+    content: "建设中";
+    font-family: 清泉;
+    position: absolute;
+    left: calc(100% - 32px);
+    top: calc(100% - 12px);
+    white-space: nowrap;
+    color: #86a1e8;
+    transform: rotateZ(-16deg);
   }
 
 </style>

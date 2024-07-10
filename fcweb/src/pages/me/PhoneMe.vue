@@ -61,12 +61,6 @@ const copyContact = (type)=>{
   <div>
     <HomeOutlined style="color: #fff" @click="jumphelper.jumpToSelect()" class="home_icon"/>
     <DefaultBackground/>
-    <!--联系方式-->
-    <div class="contact-container">
-      <div @click="copyContact(0)">Wechat</div>
-      <div @click="copyContact(1)">Email</div>
-      <div @click="copyContact(2)">Telegram</div>
-    </div>
     <!--顶部照片、简介-->
     <div class="top-container">
       <!--介绍-->
@@ -107,7 +101,7 @@ const copyContact = (type)=>{
     </svg>
     <div class="dec-container">
       <div class="dec1">
-
+        
       </div>
       <div class="dec2">
 
@@ -150,6 +144,12 @@ const copyContact = (type)=>{
           </div>
         </div>
       </div>
+    </div>
+    <!--联系方式-->
+    <div class="contact-container">
+      <div @click="copyContact(0)">Wechat</div>
+      <div @click="copyContact(1)">Email</div>
+      <div @click="copyContact(2)">Telegram</div>
     </div>
   </div>
 </template>

@@ -11,7 +11,6 @@ import PlanInsertCom from "@/coms/manager/PlanInsertCom.vue";
 import PlanChangeCom from "@/coms/manager/PlanChangeCom.vue";
 import SpaceInsertCom from "@/coms/manager/SpaceInsertCom.vue";
 import SpaceUpdateCom from "@/coms/manager/SpaceUpdateCom.vue";
-import {message} from "ant-design-vue";
 const activeKey = ref(null);
 onMounted(()=>{
   bus.on('closeSelectCard',()=>{
@@ -47,17 +46,6 @@ const comsOn = ref({
   spaceInsert: false,
   spaceUpdate: false
 })
-
-//管理员
-const managerSecret = ref('')
-const checkManagerSecret = ()=>{
-  if (managerSecret.value === 'Deadpool1234-'){
-    localStorage.setItem('managerSecret','nzt100years')
-    message.success('管理员身份验证成功')
-  }else{
-    message.error('密码错误')
-  }
-}
 
 </script>
 
@@ -114,12 +102,6 @@ const checkManagerSecret = ()=>{
         <a-collapse-panel key="9" header="视频收藏">
           <div class="manager_select_panel">
 
-          </div>
-        </a-collapse-panel>
-        <a-collapse-panel key="10" header="管理员">
-          <div class="manager_select_panel">
-            <a-input v-model:value="managerSecret" style="width: calc(100% - 160px)"/>
-            <a-button @click="checkManagerSecret">确定</a-button>
           </div>
         </a-collapse-panel>
       </a-collapse>

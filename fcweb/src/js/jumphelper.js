@@ -38,13 +38,6 @@ export const jumphelper = {
         router.replace('/mytravel')
         postLog('页面跳转-旅行日志')
     },
-    jumpToMyVideos:()=>{
-        router.replace('/myvideos')
-        postLog('页面跳转-视频-输入密码')
-    },
-    jumpToMyVideosDeep:()=>{
-        router.replace('/phone/myvideos/deep')
-    },
     jumpToManagerPassword:()=>{
         router.replace('/phone/managerpassword')
         postLog('页面跳转-管理员密码')
