@@ -1,7 +1,6 @@
 <script setup>
   import {onMounted, ref} from "vue";
   import {bus} from "vue3-eventbus";
-  import { CloseOutlined } from "@ant-design/icons-vue";
 
   onMounted(()=>{
     bus.on('showImg', (imgUrl)=>{
@@ -20,7 +19,7 @@
   <transition name="fade">
     <div class="img_background" v-if="imgOn">
       <div>
-        <CloseOutlined @click="closeImg" class="close_btn"/>
+        <div @click="closeImg" style="position: fixed; left: 0; right: 0; top: 0; bottom: 0"></div>
         <img :src="showImgUrl" alt="">
       </div>
     </div>
@@ -40,6 +39,7 @@
     align-items: center;
     justify-content: center;
     animation: fade-in .5s 1;
+    backdrop-filter: blur(4px);
   }
   .img_background div{
     width: calc(100% - 24px);

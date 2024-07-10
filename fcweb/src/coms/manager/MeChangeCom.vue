@@ -1,5 +1,5 @@
 <script setup>
-import {CloseOutlined, UploadOutlined} from '@ant-design/icons-vue'
+import {UploadOutlined} from '@ant-design/icons-vue'
 import {bus} from "vue3-eventbus";
 import {computed, onMounted, reactive} from "vue";
 import {message} from "ant-design-vue";
@@ -47,8 +47,8 @@ const handleUploadChange = (info)=>{
 
 <template>
   <div class="select_com_background">
+    <div @click="closeSelectCard()" style="position: fixed; left: 0; right: 0; top: 0; bottom: 0"></div>
     <h2>- 修改我的资料 -</h2>
-    <CloseOutlined @click="closeSelectCard()" class="card_cancel_btn" />
     <div class="select_com_card">
       <div class="select_com_line" v-for="key in objectKeys" :key="key">
         <div>
@@ -61,7 +61,7 @@ const handleUploadChange = (info)=>{
         <a-divider/>
       </div>
       <a-upload
-          action="https://www.yym-free.com/wz/file/defaultUpLoadFile"
+          action="http://www.fivecheers.com:1001/file/defaultUpLoadFile"
           @change="handleUploadChange">
         <a-button>
           <upload-outlined></upload-outlined>
@@ -94,10 +94,10 @@ const handleUploadChange = (info)=>{
 }
 .select_com_card{
   position: absolute;
-  left: 16px;
-  right: 16px;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
+  width: calc(100% - 12px);
+  transform: translate(-50%, -50%);
   max-height: 580px;
   height: calc(100% - 88px);
   background: #fff;
@@ -105,6 +105,7 @@ const handleUploadChange = (info)=>{
   padding: 16px 12px;
   overflow-y: scroll;
   overflow-x: hidden;
+  max-width: 600px;
 }
 .select_com_line h3{
   font-weight: bold;

@@ -1,5 +1,5 @@
 <script setup>
-import {CloseOutlined, UploadOutlined} from '@ant-design/icons-vue'
+import {UploadOutlined} from '@ant-design/icons-vue'
 import {bus} from "vue3-eventbus";
 import {message} from "ant-design-vue";
 import {ref} from "vue";
@@ -47,7 +47,7 @@ const insertFuc = ()=>{
 
 <template>
   <div class="select_com_background">
-    <CloseOutlined @click="closeSelectCard()" class="card_cancel_btn" />
+    <div @click="closeSelectCard()" style="position: fixed; left: 0; right: 0; top: 0; bottom: 0"></div>
     <h2>- 发布说说 -</h2>
     <div class="select_com_card">
       <div>
@@ -58,7 +58,7 @@ const insertFuc = ()=>{
       <div>
         <h3>图片</h3>
         <a-upload
-            action="https://www.yym-free.com/wz/file/defaultUpLoadFile"
+            action="http://www.fivecheers.com:1001/file/defaultUpLoadFile"
             @change="handleImgUploadChange">
           <a-button style="margin-top: 8px">
             <upload-outlined></upload-outlined>
@@ -70,7 +70,7 @@ const insertFuc = ()=>{
       <div>
         <h3>文件</h3>
         <a-upload
-            action="https://www.yym-free.com/wz/file/defaultUpLoadFile"
+            action="http://www.fivecheers.com:1001/file/defaultUpLoadFile"
             @change="handleFileUploadChange">
           <a-button style="margin-top: 8px">
             <upload-outlined></upload-outlined>
@@ -106,10 +106,9 @@ const insertFuc = ()=>{
 }
 .select_com_card{
   position: absolute;
-  left: 16px;
-  right: 16px;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   max-height: 580px;
   height: calc(100% - 88px);
   background: #fff;
@@ -117,6 +116,8 @@ const insertFuc = ()=>{
   padding: 16px 12px;
   overflow-y: scroll;
   overflow-x: hidden;
+  width: calc(100% - 12px);
+  max-width: 600px;
 }
 .select_com_line h3{
   font-weight: bold;

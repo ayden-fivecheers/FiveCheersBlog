@@ -27,13 +27,6 @@ p{
     transition: .4s;
     font-size: 26px;
 }
-.card_cancel_btn{
-    position: fixed;
-    right: 12px;
-    top: calc(25vh - 145px);
-    font-size: 26px;
-    color: white;
-}
 .fade-enter-active, .fade-leave-active {
     transition: opacity 0.5s;
 }

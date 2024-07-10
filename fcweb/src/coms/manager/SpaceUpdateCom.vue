@@ -103,7 +103,7 @@ const downloadFile = (spaceIndex, fileIndex)=>{
 
 <template>
   <div class="select_com_background">
-    <CloseOutlined @click="closeSelectCard()" class="card_cancel_btn" />
+    <div @click="closeSelectCard()" style="position: fixed; left: 0; right: 0; top: 0; bottom: 0"></div>
     <h2>- 编辑说说 -</h2>
     <div class="select_com_card">
       <div v-for="(space, spaceIndex) in spaces" :key="spaceIndex" class="space_line">
@@ -119,7 +119,7 @@ const downloadFile = (spaceIndex, fileIndex)=>{
           </div>
         </div>
         <a-upload
-            action="https://www.yym-free.com/wz/file/defaultUpLoadFile"
+            action="http://www.fivecheers.com:1001/file/defaultUpLoadFile"
             @change="handleUploadImgChange">
           <a-button @click="changeCurrentUploadImgIndex(spaceIndex)" style="margin-top: 8px">
             <upload-outlined></upload-outlined>
@@ -135,7 +135,7 @@ const downloadFile = (spaceIndex, fileIndex)=>{
           </div>
         </div>
         <a-upload
-            action="https://www.yym-free.com/wz/file/defaultUpLoadFile"
+            action="http://www.fivecheers.com:1001/file/defaultUpLoadFile"
             @change="handleUploadFileChange">
           <a-button @click="changeCurrentUploadFileIndex(spaceIndex)" style="margin-top: 8px">
             <upload-outlined></upload-outlined>
@@ -179,10 +179,9 @@ const downloadFile = (spaceIndex, fileIndex)=>{
 }
 .select_com_card{
   position: absolute;
-  left: 16px;
-  right: 16px;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   max-height: 580px;
   height: calc(100% - 88px);
   background: #fff;
@@ -190,6 +189,8 @@ const downloadFile = (spaceIndex, fileIndex)=>{
   padding: 16px 12px;
   overflow-y: scroll;
   overflow-x: hidden;
+  width: calc(100% - 12px);
+  max-width: 600px;
 }
 .space_line h4{
   margin: 8px;
