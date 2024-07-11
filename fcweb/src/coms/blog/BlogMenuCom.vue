@@ -44,7 +44,24 @@ import {onMounted, ref} from "vue";
         {
           title: 'Java',
           key: '0-1-0'
-        }]
+        },
+        {
+          title: 'Java',
+          key: '0-1-1'
+        },
+        {
+          title: 'Java',
+          key: '0-1-2'
+        },
+        {
+          title: 'Java',
+          key: '0-1-3'
+        },
+        {
+          title: 'Java',
+          key: '0-1-4'
+        },
+      ]
     }
   ])
 
@@ -144,6 +161,7 @@ import {onMounted, ref} from "vue";
     top: 44px;
     bottom: 0;
     overflow-y: scroll;
+    overflow-x: hidden;
   }
   .menu-com .menu-self .search{
     margin: 4px 8px 0 4px;
