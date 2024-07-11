@@ -123,6 +123,7 @@ const scrollDiv = ref()
         <vue3VideoPlay
             v-if="!cardShowing"
             v-bind="getOptions(item.gitVideo)"
+            :preload="false"
         />
       </div>
       <a-button style="font-family: 夏风;" type="text" @click="pushVideos">- 更多 -</a-button>

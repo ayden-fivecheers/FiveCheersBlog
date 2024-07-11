@@ -120,6 +120,7 @@ const scrollDiv = ref()
           <vue3VideoPlay
               v-if="!cardShowing"
               v-bind="getOptions(item.gitVideo)"
+              :preload="false"
           />
         </div>
         <div class="right-container">
