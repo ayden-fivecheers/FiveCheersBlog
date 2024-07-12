@@ -35,6 +35,7 @@
 <style scoped>
   *{
     font-family: HelloFont;
+    user-select: none;
   }
   .background{
     position: fixed;

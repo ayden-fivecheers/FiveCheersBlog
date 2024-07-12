@@ -11,7 +11,7 @@
 <style scoped>
   .comment-container{
     width: 100%;
-    min-height: 120px;
+    min-height: 10vh;
     background: #ddd;
   }
 </style>

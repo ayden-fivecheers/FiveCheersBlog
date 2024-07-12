@@ -2,28 +2,46 @@
   import Vditor from 'vditor'
   import 'vditor/dist/index.css';
   import {onMounted, ref} from "vue";
+  import {checkManager} from "@/js/jshelper";
 
   onMounted(()=>{
     vditor.value = new Vditor('vditor',options.value)
   })
 
   /**
+   * 获取当前文本内容
+   */
+  const getContent = ()=>{
+    const tmp = "# TODO"
+    if(isManager){
+      vditor.value.setValue(tmp)
+    }else{
+      Vditor.preview(document.getElementById(`vditor`), tmp, {});
+      document.getElementById(`vditor`).style.padding = '0 24px'
+    }
+  }
+
+  /**
    * 编辑器设置
    */
+  const isManager = checkManager()
   const vditor = ref()
-  const editing = ref(false)
   const options = ref({
-    mode: editing.value ? 'sv' : 'ir',
     toolbar:[
-       'emoji' , 'upload', '|' , 'line' , 'ordered-list' , 'check' , 'code' , 'link' , 'table', '|' , 'outline' , 'edit-mode', 'fullscreen' , 'export',  'br', '|', 'undo' , 'redo' ,
+       'emoji' , 'upload', '|' , 'line' , 'quote' , 'list', 'ordered-list' , 'check' , 'code' , '|' , 'outline' , 'edit-mode', 'fullscreen' , 'export',  'preview', '|', 'undo' , 'redo' ,
     ],
     preview:{
-      maxWidth: 1000
+      maxWidth: 1400
     },
     toolbarConfig:{
       pin: true,
       hide: false
-    }
+    },
+    cache: {
+      enable: false
+    },
+    after: getContent,
+    value: 'loading...'
   })
 
   /**
@@ -33,14 +51,14 @@
     // const tmp = {
     //   title: '标题',
     //   time: '2024/07/11 12:25',
-    //   content: '内容'
+    //   content: '# 内容'
     // }
 </script>
 
 <template>
   <div class="content-container">
     <!--内容-->
-    <div class="content-self" id="vditor"></div>
+    <div class="content-self" id="vditor">loading...</div>
     <a href="https://github.com/Vanessa219/vditor">supported by Vditor</a>
   </div>
 </template>
@@ -62,6 +80,7 @@
     min-height: 90vh;
     border: 0;
     position: relative;
+    font-family: 清泉;
   }
   .content-container ::v-deep(.vditor-toolbar) {
     padding: 0;
