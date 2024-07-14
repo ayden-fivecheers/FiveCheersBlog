@@ -41,7 +41,10 @@
       enable: false
     },
     after: getContent,
-    value: 'loading...'
+    value: 'loading...',
+    upload: {
+      url: 'http://www.fivecheers.com:1001/file/blogUpLoadFile'
+    }
   })
 
   /**

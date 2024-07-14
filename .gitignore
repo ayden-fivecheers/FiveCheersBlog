@@ -3,6 +3,6 @@
 /fcweb/.idea
 
 
-/fcserver/.mvn
-/fcserver/.idea
-/fcserver/target
+/server/.mvn
+/server/.idea
+/server/target
