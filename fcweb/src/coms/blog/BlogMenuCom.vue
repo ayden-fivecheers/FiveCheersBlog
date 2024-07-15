@@ -2,80 +2,140 @@
 import {onMounted, ref} from "vue";
   import {LeftOutlined, RightOutlined, DownOutlined} from "@ant-design/icons-vue";
   import {checkManager} from "@/js/jshelper";
+  import {keyToJSONObject} from './utils/keyToJsonobject'
+import {addNewBrotherDoc, addNewChildDoc, deleteDoc, getAllBlogKeys, renameDoc} from "@/js/apihelper";
+import {message} from "ant-design-vue";
+import {bus} from "vue3-eventbus";
 
   onMounted(async () => {
     isManager.value = await checkManager();
-    //获取所有节点的key TODO
-    allKeys.value = ['0-0', '0-1']
-    expandedKeys.value = allKeys.value
-
+    //获取所有列表并生成对象
+    const getMenuResult = getAllBlogKeys()
+    getMenuResult.then(response=>{
+      const finalResult = keyToJSONObject(response.data)
+      menuList.value = finalResult.JSONObj
+      allNodeKeys.value = finalResult.allNodeKeys
+      expandedKeys.value = allNodeKeys.value
+    }).catch(e=>{
+      message.error('获取列表失败')
+      console.log(e)
+    })
+    selectNode('1-0-0-0')
   })
 
+  /**
+   * 更新文件名
+   */
+  const open = ref(false);
+  const treeKey = ref()
+  const newName = ref()
+  const showModal = (treeKeyRef) => {
+    open.value = true;
+    treeKey.value = treeKeyRef
+  };
+
+  const handleOk = () => {
+    open.value = false;
+    const postResult = renameDoc(treeKey.value, newName.value)
+    postResult.then(response=> {
+      if (response.data) {
+        message.success('重命名成功')
+        refreshMenu()
+        return
+      }
+      message.error('重命名失败')
+    })
+  };
+
+
+  /**
+   * 刷新列表
+   */
+  const refreshMenu = ()=>{
+    menuList.value = []
+    const getMenuResult = getAllBlogKeys()
+    getMenuResult.then(response=>{
+      menuList.value = keyToJSONObject(response.data)
+    }).catch(e=>{
+      message.error('获取列表失败')
+      console.log(e)
+    })
+  }
+
+  /**
+   * 左键
+   */
+  const selectNode = () => {
+    bus.emit('selectNode',selectedKeys.value[0])
+  }
 
   /**
    * 右键
    */
   const onContextMenuClick = (treeKey, menuKey) => {
     console.log(`treeKey: ${treeKey}, menuKey: ${menuKey}`);
-  };
-
-  /**
-   * 测试数据
-   */
-  const menuList = ref([
-    {
-      title: '前端',
-      key: '0-0',
-      children: [
-        {
-          title: 'HTML',
-          key: '0-0-0'
-        },
-        {
-          title: 'CSS',
-          key: '0-0-1'
-        }
-      ]
-    },
-    {
-      title: '后端',
-      key: '0-1',
-      children: [
-        {
-          title: 'Java',
-          key: '0-1-0'
-        },
-        {
-          title: 'Java',
-          key: '0-1-1'
-        },
-        {
-          title: 'Java',
-          key: '0-1-2'
-        },
-        {
-          title: 'Java',
-          key: '0-1-3'
-        },
-        {
-          title: 'Java',
-          key: '0-1-4'
-        },
-      ]
+    switch (menuKey){
+      case '1':{
+        //增加一个同层文件
+        const postReault = addNewBrotherDoc(treeKey)
+        postReault.then(response=>{
+          if(response.data){
+            message.success('创建成功')
+            refreshMenu()
+            return
+          }
+          message.error('创建失败')
+        })
+        break;
+      }
+      case '2':{
+        //增加一个子文件
+        const postReault = addNewChildDoc(treeKey)
+        postReault.then(response=>{
+          if(response.data){
+            message.success('创建成功')
+            refreshMenu()
+            return
+          }
+          message.error('创建失败')
+        })
+        break;
+      }
+      case '3':
+      {
+        //重命名
+        showModal(treeKey)
+        break;
+      }
+      case '4':
+      {
+        //删除
+        const postReault = deleteDoc(treeKey)
+        postReault.then(response=>{
+          if(response.data){
+            message.success('删除成功')
+            refreshMenu()
+            return
+          }
+          message.error('删除失败')
+        })
+        break;
+      }
     }
-  ])
+  };
 
   /**
    * 无函数交互数据
    * @type {Ref<UnwrapRef<boolean>>}
    */
+  const menuList = ref([])
   const isStretch = ref(true);
   const isEditting = ref(false);
   const searchValue = ref('');
   const isManager = ref(false);
-  const allKeys = ref([])
+  const allNodeKeys = ref([])
   const expandedKeys = ref([])
-  const selectedKeys = ref(['0-0'])
+  const selectedKeys = ref(['1-0-0-0'])
 </script>
 
 <template>
@@ -83,14 +143,14 @@ import {onMounted, ref} from "vue";
     <!--样式定义-->
     <div v-if="isStretch && isManager" class="menu-btns">
       <a-button v-if="expandedKeys.length > 0" @click="()=>{expandedKeys = []}" type="text">收起全部</a-button>
-      <a-button v-else @click="()=>{expandedKeys = allKeys}" type="text">展开全部</a-button>
+      <a-button v-else @click="()=>{expandedKeys = allNodeKeys}" type="text">展开全部</a-button>
       <a-button v-if="isEditting" @click="()=>{isEditting = false}" type="text">编辑模式</a-button>
       <a-button v-else @click="()=>{isEditting = true}" type="text">搜索模式</a-button>
     </div>
     <!--章节展示-->
     <div v-if="isStretch" class="menu-self">
       <a-input-search v-if="!isEditting" v-model:value ="searchValue" placeholder="搜索" class="search"/>
-      <a-tree @click="({ key: menuKey }) => onContextMenuClick(treeKey, menuKey)" :show-line="true" v-model:expanded-keys="expandedKeys" :tree-data="menuList" v-model:selected-keys="selectedKeys">
+      <a-tree @select="selectNode" @click="({ key: menuKey }) => onContextMenuClick(treeKey, menuKey)" :show-line="true" v-model:expanded-keys="expandedKeys" :tree-data="menuList" v-model:selected-keys="selectedKeys">
         <!--收缩展开图标-->
         <template #switcherIcon="{ switcherCls }"><down-outlined :class="switcherCls" /></template>
         <!--搜索-->
@@ -113,14 +173,11 @@ import {onMounted, ref} from "vue";
                 <a-menu-item key="1">增加一个同层文件</a-menu-item>
                 <a-menu-item key="2">增加一个子文件</a-menu-item>
                 <a-menu-item key="3">重命名</a-menu-item>
-                <a-menu-item key="4">上移</a-menu-item>
-                <a-menu-item key="5">下移</a-menu-item>
-                <a-menu-item key="6">删除</a-menu-item>
+                <a-menu-item key="4">删除</a-menu-item>
               </a-menu>
             </template>
           </a-dropdown>
         </template>
-
       </a-tree>
     </div>
     <!--展开收缩按钮-->
@@ -128,6 +185,10 @@ import {onMounted, ref} from "vue";
       <LeftOutlined v-if="isStretch" @click="()=>{isStretch = false}" />
       <RightOutlined v-else @click="()=>{isStretch = true}"/>
     </div>
+    <!--命名-->
+    <a-modal v-model:open="open" title="Basic Modal" @ok="handleOk">
+      <a-input v-model:value="newName" placeholder="输入文档名"/>
+    </a-modal>
   </div>
 </template>
 

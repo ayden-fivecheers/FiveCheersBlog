@@ -249,3 +249,86 @@ export const refreshDeadGift = ()=>{
     const postUrl = baseApi + '/amidead/updateGiftStill'
     return axios.post(postUrl)
 }
+
+/**
+ * Blog
+ */
+//获取所有列表
+export const getAllBlogKeys = ()=>{
+    const getUrl = baseApi + '/blog/getAllBlogKeys'
+    return axios.get(getUrl)
+}
+
+//增加一个同层文件
+export const addNewBrotherDoc = (currentKey)=>{
+    const postUrl = baseApi + '/blog/addNewBrotherDoc'
+    return axios.post(
+        postUrl,
+        null,
+        {
+            params:{
+                currentKey: currentKey
+            }
+        }
+    )
+}
+
+//增加一个子文件
+export const addNewChildDoc = (currentKey)=>{
+    const postUrl = baseApi + '/blog/addNewChildDoc'
+    return axios.post(
+        postUrl,
+        null,
+        {
+            params:{
+                currentKey: currentKey
+            }
+        }
+    )
+}
+
+//删除文件
+export const deleteDoc = (currentKey)=>{
+    const getUrl = baseApi + '/blog/deleteDoc'
+    return axios.get(getUrl,{
+        params:{
+            currentKey: currentKey
+        }
+    })
+}
+
+//改名
+export const renameDoc = (currentKey, newName)=>{
+    const postUrl = baseApi + '/blog/resetName'
+    return axios.post(
+        postUrl,
+        null,
+        {
+            params:{
+                currentKey: currentKey,
+                newName: newName
+            }
+        }
+    )
+}
+
+//获取文档全部信息
+export const getDocDetailApi = (currentKey)=>{
+    const postUrl = baseApi + '/blog/getDocDetail'
+    return axios.post(postUrl,null,{
+        params:{
+            currentKey: currentKey
+        }
+    })
+}
+
+//更改文档内容
+export const updateDocDetail = (e)=>{
+    const postUrl = baseApi + '/blog/updateDocDetail'
+    return axios.post(postUrl,null,{
+        params:{
+            currentKey: e.currentKey,
+            newContent: e.newContent
+        }
+    })
+}
