@@ -1,4 +1,5 @@
 import axios from "axios";
+import {checkManager} from "@/js/jshelper";
 
 //const gdMapKey = '1caf32ee46ec234c69a6a49e47db53e0'
 //const baseApi = 'http://localhost:1227'
@@ -15,6 +16,9 @@ export const getIpAddress = ()=>{
 }
 //记录访问操作
 export const postLog = (logOp)=>{
+    if(checkManager()){
+        return
+    }
     const postUrl = baseApi + '/log/postNewLog'
     const logUUID = localStorage.getItem('UUID')
     const logIpAddress = localStorage.getItem('ipAddress')
