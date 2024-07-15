@@ -52,16 +52,17 @@ import {bus} from "vue3-eventbus";
    * 刷新列表
    */
   const refreshMenu = ()=>{
-    setTimeout(()=>{
-      menuList.value = []
-      const getMenuResult = getAllBlogKeys()
-      getMenuResult.then(response=>{
-        menuList.value = keyToJSONObject(response.data)
-      }).catch(e=>{
-        message.error('获取列表失败')
-        console.log(e)
-      })
-    },500)
+    menuList.value = []
+    const getMenuResult = getAllBlogKeys()
+    getMenuResult.then(response=>{
+      const finalResult = keyToJSONObject(response.data)
+      menuList.value = finalResult.JSONObj
+      allNodeKeys.value = finalResult.allNodeKeys
+      expandedKeys.value = allNodeKeys.value
+    }).catch(e=>{
+      message.error('获取列表失败')
+      console.log(e)
+    })
   }
 
   /**
