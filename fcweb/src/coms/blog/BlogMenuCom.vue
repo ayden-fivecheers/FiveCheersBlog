@@ -15,7 +15,6 @@ import {bus} from "vue3-eventbus";
       const finalResult = keyToJSONObject(response.data)
       menuList.value = finalResult.JSONObj
       allNodeKeys.value = finalResult.allNodeKeys
-      expandedKeys.value = allNodeKeys.value
     }).catch(e=>{
       message.error('获取列表失败')
       console.log(e)
@@ -58,7 +57,6 @@ import {bus} from "vue3-eventbus";
       const finalResult = keyToJSONObject(response.data)
       menuList.value = finalResult.JSONObj
       allNodeKeys.value = finalResult.allNodeKeys
-      expandedKeys.value = allNodeKeys.value
     }).catch(e=>{
       message.error('获取列表失败')
       console.log(e)
