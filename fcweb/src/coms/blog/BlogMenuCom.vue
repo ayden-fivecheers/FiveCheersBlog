@@ -144,11 +144,11 @@ import {bus} from "vue3-eventbus";
 <template>
   <div class="menu-com" :style="isStretch ? 'width: 320px' : 'width:24px'">
     <!--样式定义-->
-    <div v-if="isStretch && isManager" class="menu-btns">
+    <div v-if="isStretch" class="menu-btns">
       <a-button v-if="expandedKeys.length > 0" @click="()=>{expandedKeys = []}" type="text">收起全部</a-button>
       <a-button v-else @click="()=>{expandedKeys = allNodeKeys}" type="text">展开全部</a-button>
-      <a-button v-if="isEditting" @click="()=>{isEditting = false}" type="text">编辑模式</a-button>
-      <a-button v-else @click="()=>{isEditting = true}" type="text">搜索模式</a-button>
+      <a-button v-if="isEditting && isManager" @click="()=>{isEditting = false}" type="text">编辑模式</a-button>
+      <a-button v-if="!isEditting && isManager" @click="()=>{isEditting = true}" type="text">搜索模式</a-button>
     </div>
     <!--章节展示-->
     <div v-if="isStretch" class="menu-self">
