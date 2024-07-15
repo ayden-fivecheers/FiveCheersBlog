@@ -35,9 +35,9 @@
       if(response.data.blogKey){
         docNodeKey.value = response.data.blogKey
         if(isManager){
-          vditor.value.setValue(response.data.content)
+          vditor.value.setValue(decodeURIComponent(response.data.content))
         }else{
-          Vditor.preview(document.getElementById(`vditor`), response.data.content, {});
+          Vditor.preview(document.getElementById(`vditor`), decodeURIComponent(response.data.content), {});
           document.getElementById(`vditor`).style.padding = '0 24px'
         }
       }
@@ -50,7 +50,7 @@
   const saveDocDetail = ()=>{
     const postResult = updateDocDetail({
       currentKey: docNodeKey.value,
-      newContent: vditor.value.getValue()
+      newContent: encodeURIComponent(vditor.value.getValue())
     })
     postResult.then(response=>{
       if(response.data){
