@@ -1,6 +1,5 @@
 <template>
   <div class="blog-page-container">
-    <LeftOutlined @click="jumphelper.jumpToHello()" style="transform: translateX(-14px)" class="home_icon"/>
     <!--树形折叠导航栏，可折叠，管理员可编辑-->
     <BlogMenuCom class="blog-menu-com"/>
     <!--滚动页面，包括文章属性、博客区（md组件）、评论区-->
@@ -8,6 +7,7 @@
       <BlogContentCom/>
       <BlogCommentCom/>
     </div>
+    <LeftOutlined @click="jumphelper.jumpToHello()" style="transform: translateX(-14px)" class="home_icon"/>
   </div>
 </template>
 

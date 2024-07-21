@@ -1,9 +1,20 @@
 <script setup>
 
 import {jumphelper} from "@/js/jumphelper";
+import {message} from "ant-design-vue";
 
 const jumpToYYM = ()=>{
-  window.location.href = 'http://life.yym-free.com';
+  message.warn(`5s后跳转...`)
+  setTimeout(()=>{
+    message.info(`这个项目不一定做的多好，
+  但无论多久我都会保留`)
+  },800)
+  setTimeout(()=>{
+    message.success('因为它是我麻木动摇，不再‘热烈’时，对我人格的‘保鲜’')
+  },1600)
+  setTimeout(()=>{
+    window.location.href = 'http://www.fivecheers.com:1002/';
+  },5000)
 }
 </script>
 

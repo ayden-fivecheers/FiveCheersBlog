@@ -11,6 +11,7 @@ import PlanInsertCom from "@/coms/manager/PlanInsertCom.vue";
 import PlanChangeCom from "@/coms/manager/PlanChangeCom.vue";
 import SpaceInsertCom from "@/coms/manager/SpaceInsertCom.vue";
 import SpaceUpdateCom from "@/coms/manager/SpaceUpdateCom.vue";
+import {message} from "ant-design-vue";
 const activeKey = ref(null);
 onMounted(()=>{
   bus.on('closeSelectCard',()=>{
@@ -46,6 +47,11 @@ const comsOn = ref({
   spaceInsert: false,
   spaceUpdate: false
 })
+
+const logOut = ()=>{
+  localStorage.removeItem('managerSecret')
+  message.success('已退出登录')
+}
 
 </script>
 
@@ -102,6 +108,11 @@ const comsOn = ref({
         <a-collapse-panel key="9" header="给我留言">
           <div class="manager_select_panel">
 
+          </div>
+        </a-collapse-panel>
+        <a-collapse-panel key="10" header="退出登录">
+          <div class="manager_select_panel">
+            <a-button @click="logOut">退出登录</a-button>
           </div>
         </a-collapse-panel>
       </a-collapse>

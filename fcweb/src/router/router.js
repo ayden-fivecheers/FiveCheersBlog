@@ -26,6 +26,8 @@ import DesktopMyTravel from "@/pages/mytravel/DesktopMyTravel.vue";
 import HelloPage from "@/pages/hello/HelloPage.vue";
 import DeskBolg from "@/pages/blog/DeskBolg.vue";
 import PhoneBlog from "@/pages/blog/PhoneBlog.vue";
+import DeskOtherBolg from "@/pages/otherblog/DeskOtherBolg.vue";
+import PhoneOtherBlog from "@/pages/otherblog/PhoneOtherBlog.vue";
 
 const routes = [
     //初始化页面
@@ -45,6 +47,16 @@ const routes = [
     {
         path: '/phone/blog',
            component: PhoneBlog
+    },
+    //other blog
+    //Blog
+    {
+        path: '/desktop/otherblog',
+        component: DeskOtherBolg
+    },
+    {
+        path: '/phone/otherblog',
+        component: PhoneOtherBlog
     },
     //选择页面
     {

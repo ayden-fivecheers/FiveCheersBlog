@@ -32,3 +32,14 @@ export const checkAmIDead = (getTime)=>{
 export const checkManager = ()=>{
     return localStorage.getItem('managerSecret') && localStorage.getItem('managerSecret') === 'nzt100years'
 }
+
+// utils/debounce.js
+export function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+        const context = this;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+}
+

@@ -2,15 +2,21 @@
   import Vditor from 'vditor'
   import 'vditor/dist/index.css';
   import {onBeforeUnmount, onMounted, ref} from "vue";
-  import {checkManager} from "@/js/jshelper";
   import {bus} from "vue3-eventbus";
-  import {getDocDetailApi, updateDocDetail} from "@/js/apihelper";
   import {message} from "ant-design-vue";
+  import {getDocDetailApiOther, updateDocDetailOther} from "@/js/apihelper";
 
+
+  const clearUser = () =>{
+    localStorage.removeItem('user')
+  }
+
+  const user = ref(null)
   onMounted(()=>{
-    isManager.value = checkManager()
+    user.value = localStorage.getItem('user')
     vditor.value = new Vditor('vditor',options.value)
     bus.on('selectNode',(nodeKey)=>{
+      console.log('aaa')
       getDocDetail(nodeKey)
     })
   })
@@ -31,11 +37,11 @@
       },500)
     }
     //获取
-    const contentResult = getDocDetailApi(nodeKey)
+    const contentResult = getDocDetailApiOther(nodeKey, user.value)
     contentResult.then(response=>{
       if(response.data.blogKey){
         docNodeKey.value = response.data.blogKey
-        if(isManager.value){
+        if(isManager){
           vditor.value.setValue(decodeURIComponent(response.data.content))
         }else{
           Vditor.preview(document.getElementById(`vditor`), decodeURIComponent(response.data.content), {});
@@ -49,9 +55,10 @@
    * 保存内容
    */
   const saveDocDetail = ()=>{
-    const postResult = updateDocDetail({
+    const postResult = updateDocDetailOther({
       currentKey: docNodeKey.value,
-      newContent: encodeURIComponent(vditor.value.getValue())
+      newContent: encodeURIComponent(vditor.value.getValue()),
+      user: user.value
     })
     postResult.then(response=>{
       if(response.data){
@@ -69,7 +76,7 @@
    */
   const getContent = ()=>{
     const tmp = "loading"
-    if(isManager.value){
+    if(isManager){
       vditor.value.setValue(tmp)
     }else{
       Vditor.preview(document.getElementById(`vditor`), tmp, {});
@@ -81,12 +88,12 @@
   /**
    * 编辑器设置
    */
-  const isManager = ref(false)
+  const isManager = true
   const vditor = ref()
   const loaded = ref(false)
   const options = ref({
     toolbar:[
-       'emoji' , 'upload', '|' , 'line' , 'quote', 'table' , 'list', 'ordered-list' , 'check' , 'code' , '|' , 'outline' , 'edit-mode', 'fullscreen' , 'export',  'preview', '|', 'undo' , 'redo' ,
+       'emoji' , 'upload', '|' , 'line' , 'quote' , 'table' , 'list', 'ordered-list' , 'check' , 'code' , '|' , 'outline' , 'edit-mode', 'fullscreen' , 'export',  'preview', '|', 'undo' , 'redo' ,
     ],
     preview:{
       maxWidth: 1400
@@ -105,6 +112,7 @@
     }
   })
 
+
 </script>
 
 <template>
@@ -112,8 +120,9 @@
     <!--内容-->
     <div class="content-self" id="vditor">loading...</div>
     <div class="a-container">
-      <a href="/otherblog" >other users</a>
-      <a href="https://github.com/Vanessa219/vditor">supported by Vditor</a>
+      <a href="https://markdown.com.cn/basic-syntax/">markdown 教程</a>
+      <a href="https://plantuml.com/zh-dark/">plantuml 教程</a>
+      <a @click="clearUser" href="/">退出登录</a>
     </div>
     <a-button size="small" @click="saveDocDetail" v-if="isManager" type="default">保存</a-button>
   </div>

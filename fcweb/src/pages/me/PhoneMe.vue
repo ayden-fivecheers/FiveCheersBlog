@@ -147,9 +147,9 @@ const copyContact = (type)=>{
     </div>
     <!--联系方式-->
     <div class="contact-container">
-      <div @click="copyContact(0)">Wechat</div>
-      <div @click="copyContact(1)">Email</div>
-      <div @click="copyContact(2)">Telegram</div>
+      <div @touchend="copyContact(0)" @click="copyContact(0)">Wechat</div>
+      <div @touchend="copyContact(1)" @click="copyContact(1)">Email</div>
+      <div @touchend="copyContact(2)" @click="copyContact(2)">Telegram</div>
     </div>
   </div>
 </template>
@@ -169,7 +169,7 @@ const copyContact = (type)=>{
     display: flex;
     align-items: center;
     justify-content: end;
-    z-index: 999;
+    z-index: 9999;
     animation: top-fade-in 0.5s 1;
   }
   .contact-container div{
@@ -178,7 +178,7 @@ const copyContact = (type)=>{
     font-size: 12px;
     position: relative;
   }
-  .contact-container div::after{
+  .contact-container div::before{
     content: "";
     width: 16px;
     height: 2px;

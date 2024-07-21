@@ -20,6 +20,12 @@ export const keyToJSONObject = (keys)=>{
             i--;
         }
     }
+    //第一层排序
+    result.sort((a, b) => {
+        const keyA = parseInt(a.key.split('-')[0], 10);
+        const keyB = parseInt(b.key.split('-')[0], 10);
+        return keyA - keyB;
+    });
     //第二层遍历
     for (const level1Element of level1) {
         for (let i = 0; i < keys.length; i++) {
@@ -36,6 +42,12 @@ export const keyToJSONObject = (keys)=>{
                 i--;
             }
         }
+        //第二层排序
+        level1Element.children.sort((a, b) => {
+            const keyA = parseInt(a.key.split('-')[0], 10);
+            const keyB = parseInt(b.key.split('-')[0], 10);
+            return keyA - keyB;
+        });
     }
     //第三层遍历
     for (const level2Element of level2) {
@@ -53,6 +65,12 @@ export const keyToJSONObject = (keys)=>{
                 i--;
             }
         }
+        //第三层排序
+        level2Element.children.sort((a, b) => {
+            const keyA = parseInt(a.key.split('-')[0], 10);
+            const keyB = parseInt(b.key.split('-')[0], 10);
+            return keyA - keyB;
+        });
     }
     //第四层遍历
     for (const level3Element of level3) {
@@ -68,6 +86,12 @@ export const keyToJSONObject = (keys)=>{
                 i--;
             }
         }
+        //第四层排序
+        level3Element.children.sort((a, b) => {
+            const keyA = parseInt(a.key.split('-')[0], 10);
+            const keyB = parseInt(b.key.split('-')[0], 10);
+            return keyA - keyB;
+        });
     }
     return {
         JSONObj: result,

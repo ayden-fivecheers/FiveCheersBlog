@@ -2,8 +2,8 @@ import axios from "axios";
 import {checkManager} from "@/js/jshelper";
 
 //const gdMapKey = '1caf32ee46ec234c69a6a49e47db53e0'
-//const baseApi = 'http://localhost:1227'
-const baseApi = 'http://www.fivecheers.com:1001'
+//const baseApi = 'http://localhost:1080'
+const baseApi = 'http://91.238.203.23:1001'
 
 /**
  * 基础接口
@@ -329,10 +329,102 @@ export const getDocDetailApi = (currentKey)=>{
 //更改文档内容
 export const updateDocDetail = (e)=>{
     const postUrl = baseApi + '/blog/updateDocDetail'
-    return axios.post(postUrl,null,{
+    return axios.post(postUrl,e,null)
+}
+
+/**
+ * BlogOther
+ */
+//获取用户是否存在
+export const checkUserExists = (username)=>{
+    const getUrl = baseApi + '/blogother/getIfUser'
+    return axios.get(getUrl, {
         params:{
-            currentKey: e.currentKey,
-            newContent: e.newContent
+            user: username
         }
     })
+}
+
+//获取所有列表
+export const getAllBlogKeysOther = (user)=>{
+    const getUrl = baseApi + '/blogother/getAllBlogKeys'
+    return axios.get(getUrl,{
+        params:{
+            user: user
+        }
+    })
+}
+
+//增加一个同层文件
+export const addNewBrotherDocOther = (currentKey, user)=>{
+    const postUrl = baseApi + '/blogother/addNewBrotherDoc'
+    return axios.post(
+        postUrl,
+        null,
+        {
+            params:{
+                currentKey: currentKey,
+                user: user
+            }
+        }
+    )
+}
+
+//增加一个子文件
+export const addNewChildDocOther = (currentKey, user)=>{
+    const postUrl = baseApi + '/blogother/addNewChildDoc'
+    return axios.post(
+        postUrl,
+        null,
+        {
+            params:{
+                currentKey: currentKey,
+                user: user
+            }
+        }
+    )
+}
+
+//删除文件
+export const deleteDocOther = (currentKey, user)=>{
+    const getUrl = baseApi + '/blogother/deleteDoc'
+    return axios.get(getUrl,{
+        params:{
+            currentKey: currentKey,
+            user: user
+        }
+    })
+}
+
+//改名
+export const renameDocOther = (currentKey, newName, user)=>{
+    const postUrl = baseApi + '/blogother/resetName'
+    return axios.post(
+        postUrl,
+        null,
+        {
+            params:{
+                currentKey: currentKey,
+                newName: newName,
+                user: user
+            }
+        }
+    )
+}
+
+//获取文档全部信息
+export const getDocDetailApiOther = (currentKey, user)=>{
+    const postUrl = baseApi + '/blogother/getDocDetail'
+    return axios.post(postUrl,null,{
+        params:{
+            currentKey: currentKey,
+            user: user
+        }
+    })
+}
+
+//更改文档内容
+export const updateDocDetailOther = (e)=>{
+    const postUrl = baseApi + '/blogother/updateDocDetail'
+    return axios.post(postUrl,e,null)
 }

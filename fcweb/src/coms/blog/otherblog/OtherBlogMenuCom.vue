@@ -1,16 +1,22 @@
 <script setup>
 import {onMounted, ref} from "vue";
-  import {LeftOutlined, RightOutlined, DownOutlined} from "@ant-design/icons-vue";
-  import {checkManager} from "@/js/jshelper";
-  import {keyToJSONObject} from './utils/keyToJsonobject'
-import {addNewBrotherDoc, addNewChildDoc, deleteDoc, getAllBlogKeys, renameDoc} from "@/js/apihelper";
+import {LeftOutlined, RightOutlined, DownOutlined} from "@ant-design/icons-vue";
+import {keyToJSONObject} from '../utils/keyToJsonobject'
 import {message} from "ant-design-vue";
 import {bus} from "vue3-eventbus";
+import {
+  addNewBrotherDocOther,
+  addNewChildDocOther,
+  deleteDocOther,
+  getAllBlogKeysOther,
+  renameDocOther
+} from "@/js/apihelper";
 
   onMounted(async () => {
-    isManager.value = await checkManager();
+    user.value = localStorage.getItem('user')
+    isManager.value = true
     //获取所有列表并生成对象
-    const getMenuResult = getAllBlogKeys()
+    const getMenuResult = getAllBlogKeysOther(user.value)
     getMenuResult.then(response=>{
       const finalResult = keyToJSONObject(response.data)
       menuList.value = finalResult.JSONObj
@@ -35,7 +41,7 @@ import {bus} from "vue3-eventbus";
 
   const handleOk = () => {
     open.value = false;
-    const postResult = renameDoc(treeKey.value, newName.value)
+    const postResult = renameDocOther(treeKey.value, newName.value, user.value)
     postResult.then(response=> {
       if (response.data) {
         message.success('重命名成功')
@@ -52,7 +58,7 @@ import {bus} from "vue3-eventbus";
    */
   const refreshMenu = ()=>{
     menuList.value = []
-    const getMenuResult = getAllBlogKeys()
+    const getMenuResult = getAllBlogKeysOther(user.value)
     getMenuResult.then(response=>{
       const finalResult = keyToJSONObject(response.data)
       menuList.value = finalResult.JSONObj
@@ -78,7 +84,7 @@ import {bus} from "vue3-eventbus";
     switch (menuKey){
       case '1':{
         //增加一个同层文件
-        const postReault = addNewBrotherDoc(treeKey)
+        const postReault = addNewBrotherDocOther(treeKey, user.value)
         postReault.then(response=>{
           if(response.data){
             message.success('创建成功')
@@ -91,7 +97,7 @@ import {bus} from "vue3-eventbus";
       }
       case '2':{
         //增加一个子文件
-        const postReault = addNewChildDoc(treeKey)
+        const postReault = addNewChildDocOther(treeKey, user.value)
         postReault.then(response=>{
           if(response.data){
             message.success('创建成功')
@@ -111,7 +117,7 @@ import {bus} from "vue3-eventbus";
       case '4':
       {
         //删除
-        const postReault = deleteDoc(treeKey)
+        const postReault = deleteDocOther(treeKey, user.value)
         postReault.then(response=>{
           if(response.data){
             message.success('删除成功')
@@ -129,6 +135,7 @@ import {bus} from "vue3-eventbus";
    * 无函数交互数据
    * @type {Ref<UnwrapRef<boolean>>}
    */
+  const user = ref(null)
   const menuList = ref([])
   const isStretch = ref(true);
   const isEditting = ref(false);
