@@ -120,6 +120,7 @@
 </template>
 
 <style scoped>
+
   .content-container{
     width: 100%;
     display: flex;
@@ -154,6 +155,11 @@
     position: relative;
     font-family: 清泉;
     z-index: 999;
+  }
+  .content-container .content-self:deep(img){
+    max-width: 800px;
+    display: block;
+    margin: 0 auto;
   }
   .content-container ::v-deep(.vditor-toolbar) {
     padding: 0;
