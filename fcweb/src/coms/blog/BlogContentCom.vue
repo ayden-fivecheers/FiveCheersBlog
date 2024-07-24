@@ -6,6 +6,7 @@
   import {bus} from "vue3-eventbus";
   import {getDocDetailApi, updateDocDetail} from "@/js/apihelper";
   import {message} from "ant-design-vue";
+  import AiHelperCom from "@/coms/blog/AiHelperCom.vue";
 
   onMounted(()=>{
     isManager.value = checkManager()
@@ -108,26 +109,37 @@
 </script>
 
 <template>
-  <div class="content-container">
+  <div class="content-ai-container">
     <!--内容-->
-    <div class="content-self" id="vditor">loading...</div>
-    <div class="a-container">
-      <a href="/otherblog" >other users</a>
-      <a href="https://github.com/Vanessa219/vditor">supported by Vditor</a>
+    <div class="content-container">
+      <div class="content-self" id="vditor">loading...</div>
+      <div class="a-container">
+        <a href="/otherblog" >other users</a>
+        <a href="https://github.com/Vanessa219/vditor">supported by Vditor</a>
+      </div>
+      <a-button size="small" @click="saveDocDetail" v-if="isManager" type="default">保存</a-button>
     </div>
-    <a-button size="small" @click="saveDocDetail" v-if="isManager" type="default">保存</a-button>
+    <!--AI-->
+    <AiHelperCom class="ai-container"/>
   </div>
 </template>
 
 <style scoped>
-
-  .content-container{
+  .content-ai-container{
+    display: flex;
+    position: relative;
     width: 100%;
+    height: 100%;
+  }
+  .content-container{
+    flex: 1;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
   .content-container .a-container{
-    position: fixed;
+    position: absolute;
     right: 16px;
     top: 8px;
     z-index: 999;
@@ -141,7 +153,7 @@
     margin-left: 16px;
   }
   .content-container button{
-    position: fixed;
+    position: absolute;
     right: 16px;
     top: 44px;
     z-index: 999;
