@@ -30,13 +30,14 @@
       setTimeout(()=>{
         getDocDetail(nodeKey)
       },500)
+      return
     }
     //获取
     const contentResult = getDocDetailApi(nodeKey)
     contentResult.then(response=>{
       if(response.data.blogKey){
         docNodeKey.value = response.data.blogKey
-        if(isManager.value){
+        if(isManager.value ){
           vditor.value.setValue(decodeURIComponent(response.data.content))
         }else{
           Vditor.preview(document.getElementById(`vditor`), decodeURIComponent(response.data.content), {});

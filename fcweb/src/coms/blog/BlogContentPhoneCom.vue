@@ -29,6 +29,7 @@ const getDocDetail = (nodeKey)=>{
     setTimeout(()=>{
       getDocDetail(nodeKey)
     },500)
+    return
   }
   //获取
   const contentResult = getDocDetailApi(nodeKey)

@@ -35,6 +35,7 @@
       setTimeout(()=>{
         getDocDetail(nodeKey)
       },500)
+      return
     }
     //获取
     const contentResult = getDocDetailApiOther(nodeKey, user.value)
