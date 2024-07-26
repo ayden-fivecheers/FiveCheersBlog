@@ -17,6 +17,7 @@ onMounted(()=>{
 
 onBeforeUnmount(()=>{
   bus.off('selectNode')
+  vditor.value.destroy()
 })
 
 /**

@@ -23,6 +23,8 @@
 
   onBeforeUnmount(()=>{
     bus.off('selectNode')
+    saveDocDetail()
+    vditor.value.destroy()
   })
 
   /**
