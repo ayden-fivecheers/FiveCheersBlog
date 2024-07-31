@@ -1,5 +1,6 @@
 package com.fc.fcserver.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fc.fcserver.entity.V2BlogSt;
 
 import java.util.List;
@@ -21,5 +22,5 @@ public interface BlogService {
 
     V2BlogSt getDocDetail(String currentKey);
 
-    boolean updateDocDetail(String currentKey, String newContent);
+    boolean updateDocDetail(JSONObject e);
 }

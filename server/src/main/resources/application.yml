@@ -25,5 +25,5 @@ spring:
       max-file-size: 12GB
 
 custom:
-  file-path: /home/fivecheers/桌面/dogcloud/uploadFile/
-  manager-secret: 107088
+  file-path: /home/fcserver/uploadFile/
+  manager-secret: Deadpool1234-

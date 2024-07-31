@@ -1,5 +1,6 @@
 package com.fc.fcserver.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fc.fcserver.entity.V2BlogSt;
 import com.fc.fcserver.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,7 +96,7 @@ public class BlogController {
      * 更新该文档全部信息
      */
     @PostMapping("/updateDocDetail")
-    public boolean updateDocDetail(@RequestParam("currentKey") String currentKey, @RequestParam("newContent") String newContent){
-        return bs.updateDocDetail(currentKey, newContent);
+    public boolean updateDocDetail(@RequestBody JSONObject e){
+        return bs.updateDocDetail(e);
     }
 }

@@ -3,7 +3,7 @@ import {checkManager} from "@/js/jshelper";
 
 //const gdMapKey = '1caf32ee46ec234c69a6a49e47db53e0'
 //const baseApi = 'http://localhost:1080'
-const baseApi = 'http://91.238.203.23:1001'
+const baseApi = 'http://www.fivecheers.com:1001'
 
 /**
  * 基础接口
@@ -428,3 +428,4 @@ export const updateDocDetailOther = (e)=>{
     const postUrl = baseApi + '/blogother/updateDocDetail'
     return axios.post(postUrl,e,null)
 }
+

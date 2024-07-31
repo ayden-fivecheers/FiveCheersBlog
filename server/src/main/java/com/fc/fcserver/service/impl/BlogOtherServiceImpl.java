@@ -2,28 +2,29 @@ package com.fc.fcserver.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fc.fcserver.dao.BlogMapper;
+import com.fc.fcserver.dao.BlogOtherMapper;
 import com.fc.fcserver.entity.V2BlogSt;
-import com.fc.fcserver.service.BlogService;
+import com.fc.fcserver.service.BlogOtherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class BlogServiceImpl implements BlogService {
+public class BlogOtherServiceImpl implements BlogOtherService {
 
     @Autowired
-    BlogMapper bm;
+    BlogOtherMapper bm;
 
     //获取全部blog_key
     @Override
-    public List<V2BlogSt> getAllBlogKeys() {
-        return bm.getAllBlogKeys();
+    public List<V2BlogSt> getAllBlogKeys(String user) {
+        return bm.getAllBlogKeys(user);
     }
 
     //增加同层Doc
     @Override
-    public boolean addNewBrotherDoc(String currentKey) {
+    public boolean addNewBrotherDoc(String currentKey, String user) {
         //格式化keys
         int[] keys = getKeys(currentKey);
         //获取深度1/2/3/4
@@ -34,7 +35,7 @@ public class BlogServiceImpl implements BlogService {
             frontKeys.append(keys[i]).append("-");
         }
         //获取表中所有同父项key
-        List<String> fatherKeys = bm.getFatherKeys(frontKeys.toString());
+        List<String> fatherKeys = bm.getFatherKeys(frontKeys.toString(), user);
         //获取当前深度的最大值
         int maxNum = 0;
         for (String fatherKey : fatherKeys) {
@@ -50,12 +51,12 @@ public class BlogServiceImpl implements BlogService {
         }
         System.out.println(newKey);
         //增加doc
-        return bm.insertNewDoc(newKey.toString());
+        return bm.insertNewDoc(newKey.toString(), user);
     }
 
     //增加子Doc
     @Override
-    public boolean addNewChildDoc(String currentKey) {
+    public boolean addNewChildDoc(String currentKey, String user) {
         //格式化keys
         int[] keys = getKeys(currentKey);
         //获取深度1/2/3/4
@@ -67,7 +68,7 @@ public class BlogServiceImpl implements BlogService {
                 frontKeys.append(keys[i]).append("-");
             }
             //获取表中所有同父项key
-            List<String> fatherKeys = bm.getFatherKeys(frontKeys.toString());
+            List<String> fatherKeys = bm.getFatherKeys(frontKeys.toString(), user);
             //获取当前深度的最大值
             int maxNum = 0;
             for (String fatherKey : fatherKeys) {
@@ -82,43 +83,49 @@ public class BlogServiceImpl implements BlogService {
                 newKey.append("-0");
             }
             System.out.println(newKey);
-            return bm.insertNewDoc(newKey.toString());
+            return bm.insertNewDoc(newKey.toString(), user);
         }
         return false;
     }
 
     //更改标题
     @Override
-    public boolean resetName(String currentKey, String newName) {
-        return bm.resetName(currentKey, newName);
+    public boolean resetName(String currentKey, String newName, String user) {
+        return bm.resetName(currentKey, newName, user);
     }
 
     @Override
-    public boolean moveUp(String currentKey) {
+    public boolean moveUp(String currentKey, String user) {
         return false;
     }
 
     @Override
-    public boolean moveDown(String currentKey) {
+    public boolean moveDown(String currentKey, String user) {
         return false;
     }
 
     //删除文档
     @Override
-    public boolean deleteDoc(String currentKey) {
-        return bm.deleteDoc(currentKey);
+    public boolean deleteDoc(String currentKey, String user) {
+        return bm.deleteDoc(currentKey, user);
     }
 
     //获取文档
     @Override
-    public V2BlogSt getDocDetail(String currentKey) {
-        return bm.getDocDetail(currentKey);
+    public V2BlogSt getDocDetail(String currentKey, String user) {
+        return bm.getDocDetail(currentKey, user);
     }
 
     //更新文档
     @Override
     public boolean updateDocDetail(JSONObject e) {
-        return bm.updateDocDetail(e.get("currentKey").toString(), e.get("newContent").toString());
+        return bm.updateDocDetail(e.get("currentKey").toString(), e.get("newContent").toString(), e.get("user").toString());
+    }
+
+    //查询是否有用户
+    @Override
+    public boolean getIfUser(String user) {
+        return bm.getIfUser(user);
     }
 
     //处理字符串

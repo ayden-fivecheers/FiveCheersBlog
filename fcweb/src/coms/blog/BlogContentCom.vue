@@ -18,7 +18,6 @@
 
   onBeforeUnmount(()=>{
     bus.off('selectNode')
-    saveDocDetail()
     vditor.value.destroy()
   })
 
@@ -123,7 +122,7 @@
       <a-button size="small" @click="saveDocDetail" v-if="isManager" type="default">保存</a-button>
     </div>
     <!--AI-->
-    <AiHelperCom class="ai-container"/>
+    <AiHelperCom :doc-from-father="vditor" v-if="isManager" class="ai-container"/>
   </div>
 </template>
 

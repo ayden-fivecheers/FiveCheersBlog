@@ -44,8 +44,8 @@ export const keyToJSONObject = (keys)=>{
         }
         //第二层排序
         level1Element.children.sort((a, b) => {
-            const keyA = parseInt(a.key.split('-')[0], 10);
-            const keyB = parseInt(b.key.split('-')[0], 10);
+            const keyA = parseInt(a.key.split('-')[1], 10);
+            const keyB = parseInt(b.key.split('-')[1], 10);
             return keyA - keyB;
         });
     }
@@ -67,8 +67,8 @@ export const keyToJSONObject = (keys)=>{
         }
         //第三层排序
         level2Element.children.sort((a, b) => {
-            const keyA = parseInt(a.key.split('-')[0], 10);
-            const keyB = parseInt(b.key.split('-')[0], 10);
+            const keyA = parseInt(a.key.split('-')[2], 10);
+            const keyB = parseInt(b.key.split('-')[2], 10);
             return keyA - keyB;
         });
     }
@@ -88,8 +88,8 @@ export const keyToJSONObject = (keys)=>{
         }
         //第四层排序
         level3Element.children.sort((a, b) => {
-            const keyA = parseInt(a.key.split('-')[0], 10);
-            const keyB = parseInt(b.key.split('-')[0], 10);
+            const keyA = parseInt(a.key.split('-')[3], 10);
+            const keyB = parseInt(b.key.split('-')[3], 10);
             return keyA - keyB;
         });
     }
