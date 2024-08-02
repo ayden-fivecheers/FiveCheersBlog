@@ -12,7 +12,7 @@ export const random4 = {
                 mode: 'push'
             },
             onHover: {
-                enable: true,
+                enable: false,
                 mode: 'repulse'
             },
             resize: true
@@ -45,7 +45,7 @@ export const random4 = {
             width: 1
         },
         collisions: {
-            enable: true
+            enable: false
         },
         move: {
             direction: 'none',

@@ -47,13 +47,18 @@ const copyContact = (type)=>{
     case 2: copyText = contact_github.value
       break;
   }
-  navigator.clipboard.writeText(copyText)
-      .then(() => {
-        message.success('复制成功')
-      })
-      .catch((error) => {
-        console.error('复制失败', error);
-      });
+  const textArea = document.createElement("textarea");
+  textArea.value = copyText;
+  document.body.appendChild(textArea);
+  textArea.select();
+  try {
+    document.execCommand('copy');
+    message.success('复制成功');
+  } catch (err) {
+    console.error('复制失败', err);
+    message.error('复制失败');
+  }
+  document.body.removeChild(textArea);
 }
 </script>
 
@@ -101,7 +106,7 @@ const copyContact = (type)=>{
     </svg>
     <div class="dec-container">
       <div class="dec1">
-        
+
       </div>
       <div class="dec2">
 
@@ -147,9 +152,9 @@ const copyContact = (type)=>{
     </div>
     <!--联系方式-->
     <div class="contact-container">
-      <div @touchend="copyContact(0)" @click="copyContact(0)">Wechat</div>
-      <div @touchend="copyContact(1)" @click="copyContact(1)">Email</div>
-      <div @touchend="copyContact(2)" @click="copyContact(2)">Telegram</div>
+      <div @click="copyContact(0)">Wechat</div>
+      <div @click="copyContact(1)">Email</div>
+      <div @click="copyContact(2)">Telegram</div>
     </div>
   </div>
 </template>
