@@ -68,6 +68,7 @@ const refreshMenu = ()=>{
  */
 const selectNode = () => {
   bus.emit('selectNode',selectedKeys.value[0])
+  isStretch.value = false
 }
 
 /**

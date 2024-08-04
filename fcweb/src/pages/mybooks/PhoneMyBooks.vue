@@ -12,6 +12,8 @@ import DefaultBackground from "@/coms/all/DefaultBackground.vue";
 import {getAllCostSumApi} from "@/js/apihelper";
 import {message} from "ant-design-vue";
 
+const windowHeight = document.body.clientHeight
+
 onMounted(()=>{
   getMoney()
 })
@@ -37,21 +39,21 @@ const getMoney = ()=>{
 </script>
 
 <template>
-  <div style="background-color: #000" class="all-container">
+  <div :style="{height: windowHeight + 'px'}" class="all-container">
     <DefaultBackground/>
     <HomeOutlined style="color: #fff" @click="jumphelper.jumpToSelect()" class="home_icon"/>
     <!--展示窗口-->
-    <div v-if="checkManager" class="show-container">
+    <div v-if="checkManager()" class="show-container">
       <AddNewCostCom @add-cost="getMoney" v-if="currentMode===1"/>
       <UpdateCostCom v-if="currentMode===2"/>
     </div>
     <!--模式选择-->
-    <div v-if="checkManager" class="choose-mode-container">
+    <div v-if="checkManager()" class="choose-mode-container">
       <a-button class="mode-btn" @click="changeMode(1)" :type="currentMode===1 ? 'primary' : 'default'">记账</a-button>
       <a-button class="mode-btn" @click="changeMode(2)" :type="currentMode===2 ? 'primary' : 'default'">查账</a-button>
       <a-button class="mode-btn" @click="changeMode(3)" :type="currentMode===3 ? 'primary' : 'default'">统计</a-button>
     </div>
-    <div class="money-container" v-if="checkManager">
+    <div class="money-container" v-if="checkManager()">
       余额：{{money}}
     </div>
     <!--不展示-->
@@ -62,38 +64,42 @@ const getMoney = ()=>{
 </template>
 
 <style scoped>
+  .all-container{
+    position: relative;
+    width: 100%;
+  }
   .show-container{
-    position: fixed;
-    width: 90vw;
-    height: 64vh;
+    position: absolute;
+    width: 90%;
+    height: 64%;
     background: linear-gradient(to right bottom, #f3fdfc66, #eaf0fd66, #fce9f566);
     backdrop-filter: blur(4px);
     border-radius: 12px;
     border: 1px solid #888;
-    left: 50vw;
-    top: 40vh;
+    left: 50%;
+    top: 40%;
     transform: translate(-50%, -50%);
   }
   .choose-mode-container{
-    position: fixed;
-    bottom: 15vh;
-    width: 90vw;
-    height: 20vh;
+    position: absolute;
+    bottom: 15%;
+    width: 90%;
+    height: 20%;
     transform: translate(-50%, 50%);
-    left: 50vw;
+    left: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
   }
   .mode-btn{
-    width: 90vw;
-    height: 5vh;
+    width: 90%;
+    height: 25%;
     backdrop-filter: blur(4px);
   }
   .money-container{
     position: fixed;
-    right: 5vw;
+    right: 5%;
     top: 14px;
     color: #fff;
   }
@@ -101,8 +107,8 @@ const getMoney = ()=>{
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 90vw;
-    height: 20vh;
+    width: 90%;
+    height: 20%;
     min-height: 120px;
     background: linear-gradient(to right bottom, #f3fdfc88, #eaf0fd88, #fce9f588);
     backdrop-filter: blur(4px);
@@ -113,5 +119,6 @@ const getMoney = ()=>{
     align-items: center;
     justify-content: center;
     animation: topDropAni .8s 1;
+    color: #fff;
   }
 </style>
