@@ -15,7 +15,7 @@ public interface CostMapper {
     @Delete("DELETE FROM v2_count_st WHERE countId=#{countId}")
     boolean deleteCost(int countId);
 
-    @Update("UPDATE v2_count_st SET countTime = #{countTime}, countNum = #{countNum}, countDetail = #{countDetail}, countType = #{countType} WHERE countId = #{countId}")
+    @Update("UPDATE v2_count_st SET countNum = #{countNum}, countDetail = #{countDetail}, countType = #{countType} WHERE countId = #{countId}")
     boolean updateCost(V2CountSt countSt);
 
     @Select("SELECT COUNT(*) FROM v2_count_st")

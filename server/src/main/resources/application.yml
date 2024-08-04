@@ -1,5 +1,5 @@
 server:
-  # port: 1001
+  #port: 1001
   port: 8000
   tomcat:
     connection-timeout: 600000

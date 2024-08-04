@@ -2,7 +2,7 @@ import axios from "axios";
 import {checkManager} from "@/js/jshelper";
 
 //const gdMapKey = '1caf32ee46ec234c69a6a49e47db53e0'
-//const baseApi = 'http://localhost:1080'
+// const baseApi = 'http://localhost:8000'
 const baseApi = 'http://www.fivecheers.com:1001'
 
 /**
@@ -429,3 +429,72 @@ export const updateDocDetailOther = (e)=>{
     return axios.post(postUrl,e,null)
 }
 
+/**
+ * Cost
+ */
+//增加账单
+export const addNewCostApi = (postData)=>{
+    const postUrl = baseApi + '/cost/addNewCost'
+    return axios.post(postUrl, postData,{
+        headers: {
+            'Content-Type': 'application/json' // 设置请求头
+        }
+    })
+}
+
+export const getAllCostSumApi = ()=>{
+    const getUrl = baseApi + '/cost/getAllCostSum'
+    return axios.get(getUrl)
+}
+
+export const getCostSum = ()=>{
+    const getUrl = baseApi + '/cost/getCostSum'
+    return axios.get(getUrl)
+}
+
+export const getCostByPage = (e)=>{
+    const getUrl = baseApi + '/cost/getCostByPage'
+    return axios.get(getUrl,{
+        params:{
+            startIndex: e.startIndex,
+            length: e.length
+        }
+    })
+}
+
+export const deleteCostApi = (countId)=>{
+    const postUrl = baseApi + '/cost/deleteCost'
+    return axios.post(postUrl, null,{
+        params:{
+            countId: countId
+        }
+    })
+}
+
+export const updateCostApi = (postData)=>{
+    const postUrl = baseApi + '/cost/updateCost'
+    return axios.post(postUrl, postData,{
+        headers: {
+            'Content-Type': 'application/json' // 设置请求头
+        }
+    })
+}
+
+export const getCostByMonthApi = (e)=>{
+    const getUrl = baseApi + '/cost/getCostByMonth'
+    return axios.get(getUrl, {
+        params:{
+            year: e.year,
+            month: e.month
+        }
+    })
+}
+
+export const getCostByYearApi = (year)=>{
+    const getUrl = baseApi + '/cost/getCostByYear'
+    return axios.get(getUrl, {
+        params:{
+            year: year,
+        }
+    })
+}
