@@ -6,15 +6,11 @@ import {message} from "ant-design-vue";
 const jumpToYYM = ()=>{
   message.warn(`5s后跳转...`)
   setTimeout(()=>{
-    message.info(`这个项目不一定做的多好，
-  但无论多久我都会保留`)
+    message.info(`对抗磨损的小妙招`)
   },800)
   setTimeout(()=>{
-    message.success('因为它是我麻木动摇，不再‘热烈’时，对我人格的‘保鲜’')
-  },1600)
-  setTimeout(()=>{
     window.location.href = 'http://www.fivecheers.com:1002/';
-  },5000)
+  },3000)
 }
 </script>
 
@@ -34,9 +30,9 @@ const jumpToYYM = ()=>{
         <button class="default_select_button" @click="jumphelper.jumpToMyPlan()">人生逆旅</button>
         <button class="default_select_button building" @click="jumphelper.jumpToDead()">吃吃喝喝</button>
         <button class="default_select_button building" @click="jumphelper.jumpToMyTravel()">旅行足迹</button>
-        <button class="default_select_button building" @click="jumphelper.jumpToMyBooks()">头脑风暴</button>
+        <button class="default_select_button" @click="jumphelper.jumpToMyBooks()">查账记账</button>
         <button class="default_select_button building" @click="jumphelper.jumpToMyMusic()">音乐</button>
-        <button class="default_select_button building" @click="jumphelper.jumpToMyVideos()">给我留言</button>
+        <button class="default_select_button building" @click="jumphelper.jumpToLeftAMsg()">给我留言</button>
         <button class="default_select_button custom_select_button2" @click="jumpToYYM">旧版于眉</button>
       </div>
     </div>

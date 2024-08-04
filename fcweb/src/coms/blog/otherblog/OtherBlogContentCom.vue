@@ -111,7 +111,11 @@
     value: 'loading...',
     upload: {
       url: 'http://www.fivecheers.com:1001/file/blogUpLoadFile'
-    }
+    },
+    counter: {
+      enable: true
+    },
+    mode: 'wysiwyg',
   })
 
 
@@ -138,7 +142,7 @@
   }
   .content-container .a-container{
     position: fixed;
-    right: 16px;
+    right: 28px;
     top: 8px;
     z-index: 999;
     min-width: 300px;

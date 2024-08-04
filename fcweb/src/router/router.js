@@ -145,11 +145,11 @@ const routes = [
     },
     //视频
     {
-        path:'/phone/myvideos',
+        path:'/phone/leaveMsg',
         component:PhoneMyVideos
     },
     {
-        path:'/desktop/myvideos',
+        path:'/desktop/leaveMsg',
         component:DesktopMyVideos
     },
     {

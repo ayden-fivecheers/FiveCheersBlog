@@ -53,5 +53,9 @@ export const jumphelper = {
     jumpToHello:()=>{
         router.replace('/')
         postLog('页面跳转-首页')
+    },
+    jumpToLeftAMsg:()=>{
+        router.replace('/leaveMsg')
+        postLog('页面跳转-给我留言')
     }
 }

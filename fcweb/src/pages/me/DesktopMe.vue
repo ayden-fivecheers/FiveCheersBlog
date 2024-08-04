@@ -244,7 +244,7 @@ const copyContact = (type)=>{
 .dream-txt p{
   font-size: 13px;
   color: #eee;
-  line-height: 20px;
+  line-height: 17px;
   word-break: keep-all;
 }
 /*顶部*/
