@@ -176,6 +176,7 @@
   }
   .content-container .content-self:deep(img){
     max-width: 800px;
+    min-width: 200px;
     display: block;
     margin: 0 auto;
   }

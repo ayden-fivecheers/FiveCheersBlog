@@ -1,6 +1,6 @@
 <script setup>
 
-import {onMounted, ref} from "vue";
+import {defineEmits, onMounted, ref} from "vue";
 import {message} from "ant-design-vue";
 import {
   deleteCostApi,
@@ -12,6 +12,7 @@ import {
 } from "@/js/apihelper";
 import moment from "moment";
 
+const emit = defineEmits(['add-cost'])
 const pageNum = ref(1)
 const currentPage = ref(1)
 const list = ref([])
@@ -46,6 +47,7 @@ const deleteCost = (countId)=>{
     if (res.data){
       message.success('删除成功')
       getList()
+      emit('add-cost')
       return
     }
     message.error('删除失败')
@@ -59,6 +61,7 @@ const updateCost = (postData)=>{
   postResult.then(res=>{
     if (res.data){
       message.success('更新成功')
+      emit('add-cost')
       return
     }
     message.error('更新失败')

@@ -45,7 +45,7 @@ const getMoney = ()=>{
     <!--展示窗口-->
     <div v-if="checkManager()" class="show-container">
       <AddNewCostCom @add-cost="getMoney" v-if="currentMode===1"/>
-      <UpdateCostCom v-if="currentMode===2"/>
+      <UpdateCostCom @add-cost="getMoney" v-if="currentMode===2"/>
     </div>
     <!--模式选择-->
     <div v-if="checkManager()" class="choose-mode-container">
